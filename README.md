@@ -1,3 +1,10 @@
+# Testy
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/get%20_v1_user.png)
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/get_%20v1_mail.png)
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/post_v1_mail.png)
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/post_v1_user.png)
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/test_strony.png)
+
 # Feedmail
 
 WebApp wrote in node js and vanilla js for sending rss via email
