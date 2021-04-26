@@ -1,39 +1,42 @@
-# Testy
-![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/get%20_v1_user.png)
-![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/get_%20v1_mail.png)
-![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/post_v1_mail.png)
-![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/post_v1_user.png)
-![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/test_strony.png)
-
 # Feedmail
 
 WebApp wrote in node js and vanilla js for sending rss via email
 
 ## Installation
 
-Run npm installation command in the project root folder
+Tworzymy App Service i Cosmos DB
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/2.PNG)
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/3.PNG)
 
+1.	Pobieramy program z linka jako zip https://github.com/bp-wsb/feedmail
+2.	Wchodzimy  feedmail-master-> .github -> workflows -> master_wsb-feedmail
 ```bash
-npm i
+app-name: 'wsb-feedmail'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_fe5bdf53ec8f49d290ed7add8239d11b }}
+        package: .
 ```
-
-## Run on the local machine
-
-To run on the local machine enter command in the project root folder
-
+Zamieniamy wsb- feedmail' na swój AppService w naszym przypadku FeedmailHZ02
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/1.PNG)
 ```bash
-npm run start:dev
-```
+app-name: 'FeedmailHZ02'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: .
 
-## Run on Azure
-1. Create AppService and configure deployment using Github actions.
-2. Create CosmosDb with mongo client API in version 3.x
-3. Wait until provisioning of the services will finish
-4. Enter in AppService go to Configuration.
-5. You should be seeing *Application settings* and *Connection strings* sections
-6. Add two environment variables in section *Application settings*
-- NODE_ENV with value production
-- NODE_CONFIG with value
+```
+Po czym wrzucamy na Git hub-a
+
+Po tym idziemy do Settings i dodajemy New Secret o nazwie AZURE_WEBAPP_PUBLISH_PROFILE
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/4.PNG)
+Value pobieramy z AppService -> Get publish profile I pobieramy, dodajemy wszystko do Value
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/5.PNG)
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/6.PNG)
+Push do repozytorium z aplikacją
+Dodajemy zmienne środowiskowe do App Service
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/7.PNG)
+NODE_ENV value zostawiamy puste
+NODE_CONFIG with value
 
       {
           "feedmail": {
@@ -54,10 +57,19 @@ npm run start:dev
               }  
           }
       }
+W url wpisujemy link do podłączenia Cosmosdb
+W domain wpisujemy domene jaka dostalismy w mailgunie
+W apiKey wpisujemy privatApi key ktory dostalismy w mailgunie
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/8.PNG)
 
-**Remark**
-
-Notice there are empty fields in this config:
-- url - you need to copy-paste the connection string of the newly created CosmosDb. The connection string is visible in the Configuration section in the CosmosDb,
-- apiKey - you need to create an account in mailgun portal. You will get an API key after login into mailgun portal,
-- domain - if you don't have a domain you can use the sandbox domain created on mailgun web page. For more info go see mailgun documentation page.
+- # Testy
+- - # loadPage
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/test/loadPage.PNG)
+- - # getMail
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/test/getMail.PNG)
+- - # getUser
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/test/getUser.PNG)
+- - # postMail
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/test/postMail.PNG)
+- - # postUser
+![Alt Text](https://github.com/hlibZubov/feedmail-masterHZ02/blob/main/test/postUser.PNG)
